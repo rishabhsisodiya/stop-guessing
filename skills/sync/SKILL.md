@@ -85,10 +85,15 @@ A skill that rewrites files wholesale gets run once and then avoided, which defe
 - An `Assumed` spec whose assumption is now load bearing in shipped code → report it as
   owed ratification, more loudly each time.
 
-### `_shared/stack-defaults.md`
+### The Stack table in `AGENTS.md`
 
-- A tool the repo now uses that the file does not name → fill the row.
-- A row the repo contradicts → the repo wins. Rewrite the row and say so.
+- A tool the repo now uses that the table does not name → add the row.
+- A row the repo contradicts → the repo wins. Rewrite that row and say so.
+- A change here usually means `/guard` needs re-running, because its migration rules were
+  written for the old tool. Say so rather than re-running it yourself.
+
+Never write to `_shared/stack-defaults.md`. It is a machine wide preference, read only to
+skills.
 
 ## Execution
 

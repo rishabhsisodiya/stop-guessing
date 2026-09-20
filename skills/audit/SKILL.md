@@ -79,7 +79,12 @@ line at the top only if it is not already there. Never move someone's instructio
 `/audit` is usually the first thing that knows what a brownfield project is built with. When
 the audit is done:
 
-- Fill the rows it discovered in `_shared/stack-defaults.md`, values only, nothing invented.
+- The stack goes in the **Stack table of `AGENTS.md`**, which lives in the project. That is
+  the one place a skill records what this repo is built with.
+- **Never write to `_shared/stack-defaults.md`.** That file sits inside the skills
+  directory, which may be installed once for the whole machine. Writing this project's
+  facts into it would overwrite another project's, and the next `/guard` would write rules
+  for the wrong tool. It is a preference, read only to every skill.
 - Recommend `/guard` in the report, since the stack is now known and its rules can be
   specific to it. On a brownfield repo with real data, recommend it before `/develop`.
 

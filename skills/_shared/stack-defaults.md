@@ -1,5 +1,21 @@
 # Stack defaults
 
+**Your preference, not any project's facts.** No skill ever writes to this file.
+
+This file sits inside the skills directory. If the skills are installed once for the whole
+machine (`~/.claude/skills/`), so is this file, and it is shared by every project you work
+on. That is why it holds only what you prefer, and never what a particular repo uses:
+
+| | Lives in | Written by | Says |
+|---|---|---|---|
+| This file | the skills directory, possibly machine wide | **you** | what to recommend when nothing else decides |
+| `AGENTS.md` | the project | `/audit`, `/sync` | what this repo actually uses |
+| `.claude/settings.json` | the project | `/guard` | what the agent may run here |
+
+A skill recording a project's stack here would overwrite the last project's, and the next
+`/guard` would write migration rules for the wrong tool while reporting that it had covered
+them. Project facts go in `AGENTS.md`.
+
 **Edit this file first.** It retargets every skill in this collection to your stack.
 
 Skills never hardcode a tool. They read this file and put your defaults first in any

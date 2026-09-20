@@ -46,8 +46,9 @@ Per `agents-template.md`, leaving out sections that have nothing true in them ye
 greenfield `AGENTS.md` is often half the length of a brownfield one. That is correct, not
 incomplete.
 
-Fill the rows in `_shared/stack-defaults.md` from the real scaffold, correcting anything the
-stack spec got slightly wrong.
+Record the real stack in the Stack table of `AGENTS.md`, correcting anything the stack spec
+got slightly wrong. Never write it into `_shared/stack-defaults.md`, which is a machine wide
+preference and is read only to skills.
 
 ### Step 5: Hand it onward
 

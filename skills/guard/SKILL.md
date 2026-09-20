@@ -51,8 +51,10 @@ follows once the stack is confirmed. Two runs, deliberately.
 Nothing is built during `/scope` and `/architect`, so waiting costs little: those skills
 write markdown and make decisions, they do not touch a database or a migration.
 
-`/architect` records the decided stack in `_shared/stack-defaults.md`. This skill reads
-that rather than guessing, so the rules follow the decision instead of a hunch.
+The stack comes from the project, in this order: the Stack table in `AGENTS.md`, the stack
+spec in `docs/specs/`, then `--detect` reading the repo. `_shared/stack-defaults.md` is a
+machine wide preference and is **not** evidence about this project, so it is never used to
+decide which rules to write.
 
 ## The one rule that does not change
 
@@ -74,7 +76,7 @@ not have this weakness. The git and migration rules are a strong net, not a wall
 
 ### Step 0: What is already set, and is the stack known?
 
-Read `.claude/stop-guessing.json`, then `_shared/stack-defaults.md`, then the repo.
+Read `.claude/stop-guessing.json`, then `AGENTS.md`, then the repo.
 
 - Config missing, **stack known** → the normal case. Ask Steps 1 and 2, confirm the stack
   in Step 4, then apply both layers in one pass with `--layer all`. One run, done.
@@ -155,8 +157,8 @@ migrations are not covered.
 
 ### Step 4: The stack layer
 
-Reached when the stack is known: `/architect` has written it to
-`_shared/stack-defaults.md`, or `/audit` has found it in the repo, or the engineer says so.
+Reached when the stack is known: `AGENTS.md` records it, a stack spec decided it, or the
+engineer says so.
 
 Run detection as a starting point, never as the answer:
 
@@ -164,8 +166,8 @@ Run detection as a starting point, never as the answer:
 node <this skill's dir>/apply-profile.mjs --detect
 ```
 
-Then reconcile what it found with `_shared/stack-defaults.md` and the spec, and **confirm
-the list with the engineer in one panel** before writing anything. Detection reads files;
+Then reconcile what it found with `AGENTS.md` and the stack spec, and **confirm the list
+with the engineer in one panel** before writing anything. Detection reads files;
 the engineer knows the project. Where they disagree, the engineer wins.
 
 ```

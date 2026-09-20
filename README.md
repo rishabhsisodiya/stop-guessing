@@ -96,6 +96,28 @@ npx skills@latest add <your-username>/stop-guessing -a claude-code
 Works with any Agent Skills client. `AGENTS.md` is the tool agnostic context file; a thin
 `CLAUDE.md` points at it.
 
+### Once for the machine, or once per project?
+
+Either works, and the skills behave the same.
+
+| | `~/.claude/skills/` | `<repo>/.claude/skills/` |
+|---|---|---|
+| Available in | every project | that repo only |
+| Committed | no | yes, so your team gets them |
+| Updating | one place | per repo |
+
+**Installing once for the machine is usually right.** These are general workflow skills, and
+everything they produce is already per project: `AGENTS.md`, `docs/scope/`, `docs/specs/`,
+and the permission rules `/guard` writes to that repo's `.claude/settings.json`.
+
+Install per project when your team should get the same workflow from a clone, or when you
+want different versions of the skills in different repos.
+
+One consequence either way: `skills/_shared/stack-defaults.md` lives beside the skills, so a
+machine wide install means a machine wide preference file. It holds only what you prefer;
+what a given repo actually uses is recorded in that repo's `AGENTS.md`, and no skill writes
+project facts into the preference file.
+
 ## Where to start
 
 **Existing codebase:** `/audit` first, so every skill understands your project. Then

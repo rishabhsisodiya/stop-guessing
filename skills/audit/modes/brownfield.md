@@ -81,7 +81,8 @@ rather than resolving it.
 Write the root file per `agents-template.md`, plus a nested file for each workspace that
 genuinely differs, plus the `CLAUDE.md` pointer.
 
-Then fill the rows you discovered in `_shared/stack-defaults.md`, values only.
+The stack goes in the Stack table of `AGENTS.md`, in the project. Never into
+`_shared/stack-defaults.md`, which is a machine wide preference and is read only to skills.
 
 A brownfield repo has real data and real migrations, so recommend `/guard` in the report
 **before** `/develop` runs. The stack is now known, so its rules can be specific to it.

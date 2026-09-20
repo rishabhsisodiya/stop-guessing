@@ -192,10 +192,13 @@ The atomic build steps stay in the spec. The scope gets the rollup only.
 Only when the decision was the stack, an ORM, a database, or anything else that names a
 tool the project will live with.
 
-Write the choice into `_shared/stack-defaults.md`, filling the row it belongs in (runtime,
-backend framework, frontend framework, database, ORM, auth, hosting, test runner). This is
-the one file this skill may write outside `docs/specs/`, and it may only fill in values
-that this spec decided.
+The spec itself is the record, and it is in the project. If `AGENTS.md` already exists,
+also fill the row this decision settles in its Stack table. That is the one file this skill
+may touch outside `docs/specs/`, and only for values this spec decided.
+
+**Never write to `_shared/stack-defaults.md`.** It sits inside the skills directory, which
+may be installed once for the whole machine, so this project's choice would overwrite
+another project's. It is a preference you read, never a place a skill records anything.
 
 Then recommend `/guard` as the next step, before `/develop`:
 
@@ -213,6 +216,6 @@ the wrong tool, which reads as protection while leaving the real tool uncovered.
 **Spec NNNN written · <Decided | Assumed> · <N> acceptance criteria.**
 Decided: <the choice, one line, and the reason in a few words>
 Open: <any gap the coverage check found, or a question the spec deliberately left>  (omit if none)
-Recorded: <the stack values written to _shared/stack-defaults.md>                    (omit if none)
+Recorded: <the stack values written to AGENTS.md>                                    (omit if none)
 Next: /clear, then <`/guard` when the stack was just decided, else `/develop <feature>`>
 ```
