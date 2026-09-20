@@ -240,16 +240,38 @@ const stackRules = (ids) => {
 
 // ================================================================== detection
 
-const detect = () => {
-  let files = [];
-  try { files = readdirSync(process.cwd()); } catch { /* empty */ }
-  let pkg = "";
-  for (const name of ["package.json", "requirements.txt", "pyproject.toml", "Gemfile",
-                      "composer.json", "go.mod", "pom.xml", "build.gradle"]) {
-    if (existsSync(join(process.cwd(), name))) {
-      try { pkg += readFileSync(join(process.cwd(), name), "utf8"); } catch { /* skip */ }
+const MANIFESTS = ["package.json", "requirements.txt", "pyproject.toml", "Gemfile",
+                   "composer.json", "go.mod", "pom.xml", "build.gradle", "manage.py",
+                   "artisan", "alembic.ini"];
+
+const SKIP_DIRS = new Set(["node_modules", ".git", "dist", "build", "vendor", "target",
+                           "__pycache__", ".next", ".venv", "coverage", ".turbo", ".cache"]);
+
+// A monorepo keeps its manifests in subdirectories, not at the root. Looking only at the
+// root finds nothing and reports "nothing detected", which reads as "nothing to cover" on
+// a project that plainly has migrations. So walk down a couple of levels.
+const collect = (dir, depth, files, manifests) => {
+  let entries = [];
+  try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return; }
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      if (depth > 0 && !SKIP_DIRS.has(entry.name) && !entry.name.startsWith(".")) {
+        collect(join(dir, entry.name), depth - 1, files, manifests);
+      }
+      continue;
+    }
+    files.push(entry.name);
+    if (MANIFESTS.includes(entry.name) || entry.name.endsWith(".csproj")) {
+      try { manifests.push(readFileSync(join(dir, entry.name), "utf8")); } catch { /* skip */ }
     }
   }
+};
+
+const detect = () => {
+  const files = [];
+  const manifestTexts = [];
+  collect(process.cwd(), 2, files, manifestTexts);
+  const pkg = manifestTexts.join("\n");
   const found = [];
   for (const [id, s] of Object.entries(STACKS)) {
     try { if (s.detect(files, pkg)) found.push(id); } catch { /* skip */ }
