@@ -96,6 +96,25 @@ npx skills@latest add <your-username>/stop-guessing -a claude-code
 Works with any Agent Skills client. `AGENTS.md` is the tool agnostic context file; a thin
 `CLAUDE.md` points at it.
 
+### As a plugin, which avoids name clashes
+
+Several of these names are generic, and other workflow collections use the same ones.
+`scope`, `audit`, `architect`, `develop`, `sync` and `debug` all appear elsewhere. Skills
+installed loose share one flat namespace, so two collections with an `audit` will shadow
+each other, and nothing tells you which one ran.
+
+Installing as a plugin namespaces them, so both can coexist:
+
+```
+/plugin marketplace add <your-username>/stop-guessing
+/plugin install stop-guessing@stop-guessing
+```
+
+The skills are then `stop-guessing:audit`, `stop-guessing:scope` and so on. `/audit` still
+works on its own while nothing else claims that name.
+
+Install loose (below) if you are only running this collection and prefer the shorter names.
+
 ### Once for the machine, or once per project?
 
 Either works, and the skills behave the same.

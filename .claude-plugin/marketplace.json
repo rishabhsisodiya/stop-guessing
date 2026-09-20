@@ -1,0 +1,14 @@
+{
+  "name": "stop-guessing",
+  "owner": {
+    "name": "Rishabh Sisodiya"
+  },
+  "plugins": [
+    {
+      "name": "stop-guessing",
+      "source": "./",
+      "description": "Eight skills that stop a coding agent from inventing decisions you never made: scope, architect, guard, develop, audit, verify, debug, sync.",
+      "version": "0.1.0"
+    }
+  ]
+}

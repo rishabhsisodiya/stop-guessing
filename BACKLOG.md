@@ -84,3 +84,16 @@ Things that must be true before this repo is published. Ordered by risk.
 - [ ] `--scope user --profile core` to strip project level rules out of global settings.
 - [ ] A hook to stop commits landing on the default branch. Cannot be expressed as a
       permission rule.
+
+## Name collisions
+
+- [x] **Plugin packaging added** so the skills can be namespaced (`stop-guessing:audit`).
+      Six of the eight names (`scope`, `audit`, `architect`, `develop`, `sync`, `debug`) are
+      also used by at least one other public workflow collection, and loose skills share one
+      flat namespace, so two collections with an `audit` shadow each other silently.
+- [ ] **Confirm plugin install end to end.** `/plugin marketplace add` and `/plugin install`
+      are written from the documented manifest shape but have not been run. Verify before
+      publishing, the same way the `npx skills` line still needs verifying.
+- [ ] **Decide whether the loose install stays recommended.** If plugin install works
+      cleanly, it may be worth leading with it and demoting the loose copy, since the loose
+      route is the one that can silently shadow another collection.
