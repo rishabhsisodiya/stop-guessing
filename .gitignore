@@ -1,0 +1,15 @@
+# Settings written by /guard when the skills are run from inside this repo,
+# and the backups it takes before each write. Never committed: permission rules
+# belong to the project being worked on, not to this one.
+.claude/
+**/.claude/
+*.bak-*
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+node_modules/
