@@ -30,18 +30,23 @@ Shape for `AGENTS.md`. Rules live in `SKILL.md`.
 
 ## Commands
 
-| Task | Command | Verified |
-|---|---|---|
-| Install | <cmd> | yes |
-| Run locally | <cmd> | yes |
-| Build | <cmd> | yes |
-| Typecheck | <cmd> | yes |
-| Lint | <cmd> | yes |
-| Test (all) | <cmd> | yes |
-| Test (one file) | <cmd> | yes |
-| Migrations | <cmd> | handed to the engineer, never run by an agent |
+<Roles, not a fixed list. Include only the roles this project has, and record a role it
+genuinely lacks as `none` rather than leaving it out: "no build step" is useful to know.
+Status is one of: yes (ran, worked) · fails (ran, failed, with what it said) ·
+unverified (not run, with why) · none (no such role here).>
 
-<Anything unverified gets `no` and a reason on the line below the table.>
+| Role | Command | Status |
+|---|---|---|
+| Restore dependencies | <cmd> | <yes / unverified: not run, writes a dependency dir> |
+| Run locally | <cmd> | yes |
+| Build | <cmd, or none> | yes |
+| Static checks | <cmd, or none> | yes |
+| Lint / format | <cmd> | yes |
+| Test, everything | <cmd> | yes |
+| Test, one file | <cmd> | yes |
+| Migrations | <cmd> | never run by an agent, handed to you |
+
+<A `fails` or `unverified` row gets a one line reason under the table.>
 
 ## Structure
 

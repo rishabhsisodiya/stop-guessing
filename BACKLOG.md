@@ -17,9 +17,10 @@ Things that must be true before this repo is published. Ordered by risk.
 - [ ] **Database clients beyond the obvious.** The gate knows psql, mysql, mariadb, mongosh,
       mongo, sqlite3, redis-cli, pgcli, mycli. Missing: `bq`, `snowsql`, `clickhouse-client`,
       `cockroach sql`, `duckdb`, `pscale`, `supabase db`, `turso`, `wrangler d1`.
-- [ ] **`/audit` runs install without asking.** On a large repo that is minutes and a lot of
-      network. It should confirm before running install, and may run the cheap commands
-      (typecheck, lint, test) freely.
+- [x] **`/audit` asks before restoring dependencies**, and records commands as roles rather
+      than a fixed JavaScript shaped list. `command-discovery.md` covers Node, Python, Go,
+      Ruby, PHP, Rust, Java and .NET, says which commands are safe to run, and prefers the
+      non mutating form (`npm ci` over `npm install`) so a lockfile is never rewritten.
 - [ ] **`/verify` run mode assumes browser tooling.** Many setups cannot drive a UI. It needs
       an explicit fallback: check at the API level, and say the UI states were unverified.
 

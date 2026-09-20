@@ -88,6 +88,15 @@ the audit is done:
 - Recommend `/guard` in the report, since the stack is now known and its rules can be
   specific to it. On a brownfield repo with real data, recommend it before `/develop`.
 
+## Reference files
+
+Read the one you need, not all of them.
+
+- `command-discovery.md`: how to find a project's commands whatever it is built with, which
+  are safe to run, and which to ask about first. Read it in Step 3.
+- `agents-template.md`: the shape of the file being written. Read it in Step 5.
+- `modes/brownfield.md`, `modes/greenfield.md`: read exactly one, in Step 1.
+
 ## Execution
 
 ### Step 1: Classify and read the mode file
@@ -117,12 +126,22 @@ Never from memory, always from the repo:
 
 ### Step 3: Verify the commands
 
-Run the install, build, typecheck, lint and test commands and record which actually work.
-This is the single most valuable thing in the file, because a wrong test command makes every
-later skill wrong in a way nobody notices for a while.
+Read `command-discovery.md` and follow it. In short:
 
-Anything you cannot run (needs a database, needs credentials, takes too long) is recorded
-with `unverified` beside it and a note saying why. Never quietly present it as verified.
+- Record **roles**, not a fixed list. Which of restore, run, build, static checks, lint,
+  test, test one file and migrations does this project actually have? A Go project has no
+  typecheck role and a Django project has no build step. A role the project does not have
+  is recorded as `none`, which is a fact, not a blank.
+- **Run what is safe**: static checks, lint, tests, anything read only.
+- **Ask before restoring dependencies.** That is not a read: it writes a dependency
+  directory, needs the network, can take minutes, and with the wrong command can rewrite a
+  lockfile, which is a change to the repo nobody asked for. If the engineer would rather
+  not, record it `unverified` with the reason and carry on.
+- **Never run migrations, seeds or resets.** Record the command, hand it over.
+
+This is the most valuable part of the file, because a wrong test command makes every later
+skill wrong in a way nobody notices for a while. Which is also why a command that was never
+run is never marked verified.
 
 ### Step 4: Ask only what the repo cannot tell you
 
