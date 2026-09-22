@@ -19,9 +19,10 @@ the report so the engineer can decide whether the spec or the scaffold should ch
 
 ### Step 2: Commands, from the generator's own scripts
 
-A fresh scaffold usually comes with working scripts. Run them: install, build, typecheck,
-lint, test. A scaffold's test command often passes with zero tests, which is fine to
-record, but say so, because "tests pass" means something different here.
+A fresh scaffold usually comes with working scripts. Verify them per `command-discovery.md`:
+record roles, run the safe ones, and ask before restoring dependencies. A scaffold's test
+command often passes with zero tests, which is fine to record, but say so, because "tests
+pass" means something different here.
 
 Note which commands the scaffold did **not** provide. A missing typecheck or lint command
 is a real gap and belongs in the report, where it usually becomes the tooling feature on
