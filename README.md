@@ -120,6 +120,52 @@ works on its own while nothing else claims that name.
 
 Install loose (below) if you are only running this collection and prefer the shorter names.
 
+### Updating
+
+```bash
+claude plugin marketplace update stop-guessing
+claude plugin update stop-guessing@stop-guessing
+```
+
+Then start a new session, so the updated skills load.
+
+Updates are decided by the **version number**, not by comparing files. If `claude plugin
+update` says "already at the latest version" when you expected a change, the version was not
+bumped. Every release here bumps it, so that message means you really are current.
+
+Check what you are on, and what changed, with:
+
+```bash
+claude plugin list
+```
+
+and the [changelog](CHANGELOG.md).
+
+### Auto updating, if you want it
+
+Claude Code can refresh this marketplace and the installed plugin at startup, so every new
+session runs the latest release. It is off by default. To turn it on:
+
+```bash
+node -e "
+const fs=require('fs'), f=require('os').homedir()+'/.claude/settings.json';
+const s=JSON.parse(fs.readFileSync(f,'utf8'));
+const m=s.extraKnownMarketplaces||{};
+if(!m['stop-guessing']){console.log('not found - add the marketplace first');process.exit(1);}
+m['stop-guessing'].autoUpdate=true;
+s.extraKnownMarketplaces=m;
+fs.writeFileSync(f,JSON.stringify(s,null,2));
+console.log('autoUpdate enabled');"
+```
+
+**Think about whether you want this.** With it on, a change lands in your next session with
+no warning, including one that changes how a skill behaves. These skills write to your repo
+and, in `/guard`'s case, to your permission rules, so most people are better off updating
+deliberately, reading the changelog, and knowing which version they are on. It suits you
+best if you are the one making the changes.
+
+Set it back to `false` the same way to turn it off.
+
 ### Once for the machine, or once per project?
 
 Either works, and the skills behave the same.
