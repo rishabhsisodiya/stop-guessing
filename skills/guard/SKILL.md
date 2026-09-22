@@ -64,9 +64,16 @@ subagent. It stops and hands the command to the engineer. See `_shared/boundarie
 
 ## Honesty requirement
 
-Whenever the stack layer is applied, **say plainly which migration tools were not covered.**
-The generator prints that list. Pass it on. A user who believes migrations are blocked when
-their tool is not in the list is worse off than one who knows the limit.
+The stack rules are written for the migration tools this project actually uses, taken from
+`AGENTS.md`, the stack spec, and detection. Report those as covered.
+
+**Flag a gap only when there is one:** a migration tool this project uses that the generator
+has no rules for (a tool not in its `STACKS` table). Say plainly that its commands are not
+blocked. A user who believes migrations are blocked when their tool is not handled is worse
+off than one who knows the limit.
+
+Do **not** list tools the project does not use. They are not a gap, and listing them buries
+the one line that matters.
 
 Say the other limit too, once: deny rules match command prefixes, so a chained command such
 as `cd app && git push` can slip past. The database gate reads the whole command and does
@@ -197,7 +204,7 @@ Rules somebody else wrote are left alone. Confirm before running it, then delete
 ```
 Safety: <profile> · commits: <you | agent on a branch> · layer: <baseline | baseline + stack>
 Blocked: <one line of what this covers>
-Not covered: <the migration tools this project does not use, or "stack rules not applied yet">
+Not covered: <a migration tool this project uses that has no rules, or "stack rules not applied yet">   (omit when there is no gap)
 Rules in .claude/settings.json (<N>). Commit it to share with your team.
 Change it with /guard, remove it with /guard remove.
 ```

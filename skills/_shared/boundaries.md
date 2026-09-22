@@ -75,8 +75,8 @@ believes they are protected takes risks a person who knows the limit would not.
 
 In practice:
 
-- `/guard` prints which migration tools it did **not** cover, every time it applies the
-  stack layer, and says once that prefix rules can be slipped by a chained command
+- `/guard` says when a migration tool this project uses has no rules, so its commands are
+  not blocked, and says once that prefix rules can be slipped by a chained command
   (`cd app && git push`). The database gate reads the whole command and does not have that
   weakness; the git and migration rules are a strong net, not a wall.
 - `/architect` records what a decision **forecloses**, and names any value its acceptance

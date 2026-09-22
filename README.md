@@ -54,8 +54,8 @@ dispatch" is a product decision, and guessing it produces software that is confi
 **2. A result comes with its limits attached.**
 
 Every skill states what it could not do, in the same breath as what it did.
-`/verify` reports what it could not check, not only what passed. `/guard` prints which
-migration tools it did **not** cover. `/architect` records what a decision forecloses. A
+`/verify` reports what it could not check, not only what passed. `/guard` says when a
+migration tool your project uses has no rules. `/architect` records what a decision forecloses. A
 skipped step is recorded as skipped, never as done.
 
 A result with its limits attached is worth more than a clean result that was not true.
@@ -79,7 +79,8 @@ run it itself.
 It runs **after** `/architect` decides the stack, so its migration rules match the tool you
 actually chose rather than one it guessed at. Covers Prisma, Drizzle, TypeORM, Knex,
 Sequelize, MikroORM, Django, Alembic, Rails, Laravel, goose, Flyway, Liquibase and EF Core.
-It prints which ones it did not cover, every time.
+If your project uses a migration tool that is not on that list, it says so plainly: that
+tool's commands are not blocked.
 
 Remove it any time with `/guard remove`.
 
@@ -203,7 +204,8 @@ Stated plainly, because a safety tool you trust too much is worse than one you u
 - **Chained commands.** Permission rules match command prefixes, so `cd app && git push`
   can slip past. The database gate reads the whole command and does not have this weakness.
   The git and migration rules are a strong net, not a wall.
-- **Migration tools not in the list.** `/guard` prints what it did not cover. Read that line.
+- **Migration tools not in the list.** If your project uses one, `/guard` says its commands
+  are not blocked. Read that line when it appears.
 - **Windows is untested.** macOS and Linux only, for now.
 - **The gate is judgment, not proof.** It catches the large majority of unmade decisions.
   No prompt catches all of them.

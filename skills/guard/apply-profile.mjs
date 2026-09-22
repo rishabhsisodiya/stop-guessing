@@ -281,12 +281,10 @@ const detect = () => {
 
 if (has("detect")) {
   const { found } = detect();
-  const known = Object.keys(STACKS);
   console.log(JSON.stringify({
     detected: found,
     labels: found.map((id) => STACKS[id].label),
-    notDetected: known.filter((id) => !found.includes(id)),
-    note: "Detection is a hint. Confirm with the engineer, and say plainly which tools are NOT covered.",
+    note: "Detection is a hint. Confirm with the engineer. If the project uses a migration tool not in this list, say so: that tool is not covered.",
   }, null, 2));
   process.exit(0);
 }
@@ -418,9 +416,6 @@ if (gate) {
 }
 
 const covered = stacks.map((id) => STACKS[id]?.label ?? id);
-const uncovered = Object.entries(STACKS)
-  .filter(([id]) => !stacks.includes(id))
-  .map(([, s]) => s.label);
 
 if (dry) {
   console.log(JSON.stringify({ settingsPath, layer, profile, addedDeny, addedAsk, addedGate, covered, gateWarning }, null, 2));
@@ -433,8 +428,6 @@ if (dry) {
   if (gateWarning) console.log(`  WARNING: ${gateWarning}`);
   if (layer === "stack" || layer === "all") {
     console.log(`  migration tools covered: ${covered.length ? covered.join(", ") : "none"}`);
-    console.log(`  NOT covered: ${uncovered.join(", ")}`);
-    console.log("  If this project uses one of those, re-run with it in --stacks.");
   }
   console.log("  previous settings backed up alongside the file");
 }
