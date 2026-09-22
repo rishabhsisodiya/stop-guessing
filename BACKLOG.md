@@ -92,9 +92,16 @@ Things that must be true before this repo is published. Ordered by risk.
       Six of the eight names (`scope`, `audit`, `architect`, `develop`, `sync`, `debug`) are
       also used by at least one other public workflow collection, and loose skills share one
       flat namespace, so two collections with an `audit` shadow each other silently.
-- [ ] **Confirm plugin install end to end.** `/plugin marketplace add` and `/plugin install`
-      are written from the documented manifest shape but have not been run. Verify before
-      publishing, the same way the `npx skills` line still needs verifying.
+- [x] **Plugin install confirmed end to end.** `claude plugin marketplace add` then
+      `claude plugin install stop-guessing@stop-guessing` from GitHub; `claude plugin details`
+      lists all eight skills. Measured cost: ~920 tokens always on (the eight descriptions),
+      then 1.5k to 3.6k per skill invocation, `architect` highest, `verify` lowest.
+      Note: re-adding with the `<user>/<repo>` shorthand fails if the same name was already
+      added from the git URL, because the two count as different source kinds. Harmless, but
+      the message is confusing.
+- [ ] **Confirm the skills appear in the VS Code extension** after a terminal install.
+      `/plugin` itself does not exist in the IDE extension; loading should come from the
+      shared `~/.claude` config.
 - [ ] **Decide whether the loose install stays recommended.** If plugin install works
       cleanly, it may be worth leading with it and demoting the loose copy, since the loose
       route is the one that can silently shadow another collection.
