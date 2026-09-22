@@ -135,7 +135,7 @@ Lead with what the pass produced and the first step. Everything else is in the f
 Next: /clear, then <the first unticked box, usually `/architect <first feature>`, or `/audit` if a brownfield repo has no root AGENTS.md>
 Assumed: <the one or two assumptions worth reading before you continue>   (omit if none)
 Heads up: <a real risk, or a foundation that needs a decision>            (omit if none)
-Written to <docs/scope/scope.md>.
+Written to <the scope file path>.   (or: Not saved, this project keeps no scope file.)
 ```
 
 _The scope, the specs, and `AGENTS.md` are the durable state. The workflow hands off through

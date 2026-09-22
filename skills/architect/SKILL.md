@@ -1,7 +1,7 @@
 ---
 name: architect
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, Agent, AskUserQuestion
-description: "Run /architect when a load bearing decision is unmade: a data model, a provider or library, a page design, a cross cutting pattern, the stack, or when /develop says a decision is owed. Asks the questions that matter, recommends an answer, and writes it as a build spec in docs/specs/. Owns every spec file. Never writes code."
+description: "Run /architect when a load bearing decision is unmade: a data model, a provider or library, a page design, a cross cutting pattern, the stack, or when /develop says a decision is owed. Asks the questions that matter, recommends an answer, and writes it as a build spec. Owns every spec file. Never writes code."
 ---
 
 ## What this skill does
@@ -90,8 +90,10 @@ take the next free one for yours and say so.
 Research that supports a decision (an inventory, a comparison, call sites) goes in
 `docs/specs/NNNN-<slug>-rationale.md`, never in the spec itself and never in `docs/scope/`.
 
-Artifact base is `docs/` unless `docs/` is a published docs site, in which case `.workflow/`.
-Follow whichever already exists.
+Where specs are saved is the project's own choice for specs, asked the first time a spec is
+written: follow `_shared/workflow-files.md`. Paths here written as `docs/specs/` mean that folder. If specs are
+not saved, show the spec in the chat. If the scope is not saved, skip Step 7's scope update.
+Say which was skipped.
 
 ## Status
 

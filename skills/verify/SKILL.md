@@ -72,7 +72,8 @@ Follow the mode file.
 
 ### Step 3: Write the findings
 
-Findings go to `docs/reviews/<date>-<feature>.md` when there is more than a handful, so they
+Findings go to `docs/reviews/<date>-<feature>.md` (`_shared/workflow-files.md`; in the chat only if the
+project does not save reviews) when there is more than a handful, so they
 survive the session and can be worked through. A short clean result stays in the report.
 
 Each finding carries: what is wrong, where (file and line, or the steps that reproduce it),

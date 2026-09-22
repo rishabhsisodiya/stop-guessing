@@ -24,6 +24,11 @@ box from two different readings of the same evidence, or tick it twice.
 `/scope` run bare reads the reconciled state and plans forward on top of it. If the scope has
 not been reconciled since the last change, it says so and recommends this skill first.
 
+## Where the files are
+
+The scope and specs each live where the project chose for that kind (`_shared/workflow-files.md`).
+Reconcile only the kinds that are saved. If neither is, update `AGENTS.md` only, and say so.
+
 ## Evidence, never memory
 
 Everything this skill writes comes from something it can point at: a diff, a file on disk, a

@@ -83,8 +83,8 @@ any seed or fixture step. Never a value, never a secret.>
 
 ## Workflow
 
-This project uses the stop-guessing skills. The scope lives in `docs/scope/`, the decisions
-in `docs/specs/`. A load bearing decision is written as a spec before it is built.
+This project uses the stop-guessing skills. Scope: <folder, or "not saved">.
+Specs: <folder, or "not saved">. Reviews: <folder, or "not saved">. A load bearing decision is written as a spec before it is built.
 ```
 
 ## Nested `AGENTS.md`

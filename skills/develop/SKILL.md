@@ -71,7 +71,8 @@ and then it protects nothing.
 
 If they override:
 
-1. Write an **`Assumed` spec** to `docs/specs/` using `/architect`'s template. Fill in the
+1. Write an **`Assumed` spec** to the specs folder (`_shared/workflow-files.md`) using `/architect`'s template.
+   If the project does not save specs, record the assumption in the report instead. Fill in the
    decision as assumed, the reason, and the acceptance criteria you are building to. Mark
    `Status: Assumed`.
 2. Add `assumed decision (spec NNNN)` beside the feature's heading in the scope.

@@ -1,7 +1,7 @@
 ---
 name: scope
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
-description: "Run /scope to turn a product idea into an ordered, living plan in docs/scope/scope.md, or run it bare to reconcile what shipped and queue what is next. Decides WHAT to build and in what order, and flags which features need a decision before code. Never picks tools, never writes build tasks, specs, or code."
+description: "Run /scope to turn a product idea into an ordered, living plan saved where the project chooses (docs/ by default), or run it bare to reconcile what shipped and queue what is next. Decides WHAT to build and in what order, and flags which features need a decision before code. Never picks tools, never writes build tasks, specs, or code."
 ---
 
 ## What this skill does
@@ -38,7 +38,7 @@ These refusals are the skill. Read them as hard rules, not preferences.
 2. **Never write build tasks.** One box per undesigned feature. No UI/API/model/test subtasks.
 3. **Never delete a row.** A de-scoped feature becomes `dropped`. History stays honest.
 4. **Never create a dated or numbered file.** The scope is edited in place, always.
-5. **Never write code, specs, `AGENTS.md`, or anything outside `docs/scope/`.**
+5. **Never write code, specs, `AGENTS.md`, or anything outside the scope folder.**
    One artifact, one owner.
 6. **Never touch an `existing` row.** Code that predates this workflow is enrolled for
    context only, and the pipeline leaves it alone.
@@ -100,10 +100,14 @@ decision debt kept visible.
 
 ## Where the file goes
 
-`docs/scope/scope.md` by default. If `docs/` is a published docs site
-(`docusaurus.config.*`, `.vitepress/`, `mkdocs.yml`, Astro Starlight, Nextra), use
-`.workflow/scope/scope.md` instead so the plan does not ship with your site. Always follow
-whichever base already exists.
+The first time this skill writes in a project, it asks where to save **the scope**:
+`docs/` (recommended), `.claude/stop-guessing/`, another folder, or not at all. Specs and
+reviews are asked about separately, by the skills that write them. The answer is remembered
+per project. Follow `_shared/workflow-files.md`. The scope is `<that folder>/scope/scope.md`; paths below written as
+`docs/scope/` mean that folder.
+
+If the answer is not to save, show the plan in the chat, and say that replan and add will
+have nothing to build on next time.
 
 Monorepo: one scope per workspace at `docs/scope/<workspace>/scope.md`.
 
@@ -132,7 +136,7 @@ Never write permission rules yourself. That is `/guard`'s job.
 
 ### Step 1: Infer the mode
 
-Check whether a scope exists under `docs/scope/` (or `.workflow/scope/`), then:
+Check whether a scope exists in this project's chosen location (`_shared/workflow-files.md`), then:
 
 - Scope exists, no argument, or you were asked "what's next" → **replan**, read `modes/replan.md`.
 - Scope exists, argument names one feature → **add**, read `modes/add.md`.
