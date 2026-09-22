@@ -1,7 +1,7 @@
 {
   "name": "stop-guessing",
   "description": "Skills that make a load bearing decision happen before code, write it down, and refuse to build past an unmade one. Every skill states what it could not do alongside what it did.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Rishabh Sisodiya"
   },

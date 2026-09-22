@@ -79,6 +79,26 @@ Then check it:
 node skills/guard/apply-profile.mjs --layer stack --stacks mytool --dry
 ```
 
+## Releasing a change
+
+`claude plugin update` decides whether there is anything new by comparing the **version
+string**, not the files. Push a change without bumping it and every installed copy reports
+"already at the latest version" and keeps running the old skills.
+
+So every release bumps `version` in **both** `.claude-plugin/plugin.json` and
+`.claude-plugin/marketplace.json`, to the same value:
+
+- patch (`0.2.0` → `0.2.1`): wording fixes, no change in what a skill does
+- minor (`0.2.0` → `0.3.0`): a skill behaves differently, or a new option
+- major: a skill is renamed or removed, or a file format changes
+
+Then users update with:
+
+```bash
+claude plugin marketplace update stop-guessing
+claude plugin update stop-guessing@stop-guessing
+```
+
 ## Before you open a pull request
 
 - Every new refusal is stated in `SKILL.md`, not buried in a mode file.
