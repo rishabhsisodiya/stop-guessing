@@ -99,9 +99,14 @@ Met: AC-<list>
 Not met: AC-<n> — <what happened instead>                     (omit if none)
 Unverified: AC-<n> — <why it could not be checked>            (omit if none)
 Findings: <count by severity, or "none">
+Checked by: <driving the UI in a browser | API requests only, no browser tool available>
 Handed over: <any command the engineer needs to run>          (omit if none)
 Next: <`/develop` or `/debug` to fix, else the next step on the scope>
 ```
 
 The `Unverified` line is never omitted when anything was unverified, however good the rest
 of the result looks. That line is the difference between a check and a performance.
+
+`Checked by` is never omitted either. "5 of 5 criteria met" means something different when
+the screens were never opened, and the reader is entitled to know which one they are being
+told.

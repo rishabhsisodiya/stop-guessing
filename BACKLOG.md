@@ -21,8 +21,10 @@ Things that must be true before this repo is published. Ordered by risk.
       than a fixed JavaScript shaped list. `command-discovery.md` covers Node, Python, Go,
       Ruby, PHP, Rust, Java and .NET, says which commands are safe to run, and prefers the
       non mutating form (`npm ci` over `npm install`) so a lockfile is never rewritten.
-- [ ] **`/verify` run mode assumes browser tooling.** Many setups cannot drive a UI. It needs
-      an explicit fallback: check at the API level, and say the UI states were unverified.
+- [x] **`/verify` handles having no browser tool.** Step 0 of run mode decides what can be
+      driven: a browser tool means full UI checks; without one it checks the API (pagination,
+      clamped page size, filters, sorting stability, permissions) and lists the screen-only
+      things as unverified, individually. The report carries a `Checked by` line, always.
 
 ## Done
 

@@ -6,6 +6,47 @@ The failure this mode exists to prevent is subtle: an agent reads the code it ju
 recognises the shape of a correct implementation, and reports success. That is not a check.
 It is the same source agreeing with itself.
 
+### Step 0: Work out what you can actually drive
+
+Say this at the start, because it decides what "verified" can mean in this run.
+
+- **A browser tool is available** (Playwright, Chrome DevTools, or any tool that can open a
+  page, click, type and read what rendered) → drive the UI like a user. Full checks.
+- **No browser tool, but the feature has an HTTP API** → check at the API level with real
+  requests. Anything that only exists on screen (a rendered state, a disabled control, focus
+  order, what a user sees) is `unverified`, with "no browser tool available" as the reason.
+- **Neither** → say plainly that this feature cannot be verified here, and what would make it
+  possible. Do not substitute reading the code, which is not a check.
+
+Never quietly downgrade. If the UI was not driven, the report says so, every time.
+
+**When a browser tool is available, just use it.** There is nothing to ask.
+
+**When there is none and the feature has screens**, this is worth asking once per project,
+because setting one up is a real option the engineer may want to take before you start.
+Read `.claude/stop-guessing.json`:
+
+- `"uiChecks"` is set → follow it, do not ask again.
+- Not set → ask once, then record the answer:
+
+  - question: "This feature has screens, and I have no browser tool, so I can check the API
+    but not what renders. How do you want to handle that?"
+  - header: "UI checks"
+  - options:
+    - `Check the API, I will click through myself (recommended)`: "Faster. Everything that
+      is really API behaviour still gets checked, and anything that only exists on screen is
+      reported as unverified so you know what to look at."
+    - `Set up a browser tool first`: "Stop here. You run
+      `claude mcp add playwright -- npx @playwright/mcp@latest`, restart the session, and
+      run `/verify` again. Then the screens get driven like a real user."
+
+  Record `"uiChecks": "api-only"` or `"browser"`. Change only that key; `/guard` owns the
+  rest of the file.
+
+If they choose to set one up, stop and wait. Do not half check the feature in the meantime.
+
+A feature with no UI at all never triggers this question.
+
 ### Step 1: Get the app running
 
 Use the commands in `AGENTS.md`. Install, build, start.
@@ -61,14 +102,29 @@ The success path is the easy half and usually the only half that gets checked.
 
 ### Step 4: Check the required states, when there is a UI
 
-Every screen the feature touches must handle loading, empty, empty after filtering, error
-with a retry, permission denied and success. The full list is in `develop/ui-guide.md`.
+**With a browser tool.** Every screen the feature touches must handle loading, empty, empty
+after filtering, error with a retry, permission denied and success. The full list is in
+`develop/ui-guide.md`. Render each one and look.
 
-If the feature includes a list page, check the whole list contract as well: pagination
-across a boundary, page size taking effect, search returning and clearing, each filter,
-sorting each sortable column both ways, and the URL holding all of it so a reload restores
-the view. A list contract that was never exercised with more than one page of data has not
-been checked.
+For a list page, check the whole list contract: pagination across a boundary, page size
+taking effect, search returning and clearing, each filter, sorting each sortable column both
+ways, and the URL holding all of it so a reload restores the view. A list contract never
+exercised with more than one page of data has not been checked.
+
+**Without a browser tool**, a good deal of this is still checkable, because most of it is the
+API's behavior, not the screen's:
+
+- Pagination: request page 2, and a page past the end.
+- Page size: ask for more than the server maximum and confirm it is clamped.
+- Search and each filter: real requests, including one that matches nothing.
+- Sorting: each sortable column both ways, and confirm rows do not shuffle between pages
+  when the sort value repeats.
+- Permissions: the same request as an actor who should be refused.
+
+What genuinely needs the screen is `unverified`: loading skeletons, empty state wording,
+error and retry, focus and keyboard, responsive behavior, and the URL holding the view.
+List them individually rather than as "UI not checked", so the engineer knows exactly what
+nobody has looked at.
 
 ### Step 5: Run the existing tests
 
