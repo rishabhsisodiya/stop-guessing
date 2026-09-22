@@ -28,11 +28,13 @@ In order of trustworthiness:
 2. The scripts section of the manifest, or the Makefile.
 3. A README, which is often stale. Treat it as a claim to verify, never as evidence.
 
-Then run them: install, build, typecheck, lint, test. Record what actually works.
+Then verify them per `command-discovery.md`: record roles rather than a fixed list, run the
+safe ones (static checks, lint, tests), and **ask before restoring dependencies**, which
+writes a dependency directory and can rewrite a lockfile. Never run migrations or seeds.
 
-What you cannot run (needs a database, needs credentials, takes too long) is recorded as
-`unverified` with the reason. Never present it as verified. A wrong test command is the most
-expensive error this file can contain, because every later skill inherits it silently.
+What you cannot run (needs a database, needs credentials, the engineer declined) is recorded
+as `unverified` with the reason. Never present it as verified. A wrong test command is the
+most expensive error this file can contain, because every later skill inherits it silently.
 
 ### Step 3: Conventions, with evidence
 
