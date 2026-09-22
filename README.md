@@ -103,12 +103,16 @@ Several of these names are generic, and other workflow collections use the same 
 installed loose share one flat namespace, so two collections with an `audit` will shadow
 each other, and nothing tells you which one ran.
 
-Installing as a plugin namespaces them, so both can coexist:
+Installing as a plugin namespaces them, so both can coexist. From a terminal:
 
+```bash
+claude plugin marketplace add <your-username>/stop-guessing
+claude plugin install stop-guessing@stop-guessing
 ```
-/plugin marketplace add <your-username>/stop-guessing
-/plugin install stop-guessing@stop-guessing
-```
+
+Or, inside the interactive CLI, the same thing as `/plugin marketplace add …` and
+`/plugin install …`. The `/plugin` command is not available in the IDE extensions, so from
+VS Code use the terminal commands above, then start a new session.
 
 The skills are then `stop-guessing:audit`, `stop-guessing:scope` and so on. `/audit` still
 works on its own while nothing else claims that name.
