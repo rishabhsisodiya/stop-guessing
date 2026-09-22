@@ -32,9 +32,11 @@ nobody updates two places. So:
 
 These refusals are the skill. Read them as hard rules, not preferences.
 
-1. **Never name a tool.** No library, ORM, provider, host, or framework, not even in passing.
-   A feature that implies a tool choice is exactly `needs a decision`. Naming the tool here
-   silently makes the decision and skips `/architect`.
+1. **Never name a tool or make a design choice.** No library, ORM, provider, host or
+   framework, and no endpoint, table, field, screen layout, or "extend X rather than add Y".
+   Those are *how*, and how belongs to `/architect`. Writing it here silently makes the
+   decision and skips the conversation that should have made it. A feature that implies
+   one is exactly `needs a decision`.
 2. **Never write build tasks.** One box per undesigned feature. No UI/API/model/test subtasks.
 3. **Never delete a row.** A de-scoped feature becomes `dropped`. History stays honest.
 4. **Never create a dated or numbered file.** The scope is edited in place, always.

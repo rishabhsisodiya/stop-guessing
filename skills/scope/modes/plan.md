@@ -82,9 +82,30 @@ nice to haves. Per feature:
 
 - **Small.** One page or one cohesive unit. A listing, a detail page, and a cart are three
   features, not one "storefront". Split anything spanning unrelated screens.
-- **Intent**, 1 to 2 lines: what it is and why it matters.
-- **`Done when:`**, one compact line of observable outcomes. These are the seeds
-  `/architect` grows into full acceptance criteria. Load bearing outcomes only.
+- **Intent**, 1 to 2 lines: what a user can now do, and why it matters, in the user's
+  words. Nothing about how it is built.
+- **`Done when:`**, one line, two or three outcomes a user could observe, about 25 words at
+  most. These are seeds; `/architect` grows them into full acceptance criteria. Which
+  states, which roles in which cases, what resets, what gets logged: those are spec
+  questions, so leave them for `/architect` rather than answering them here.
+
+**Right size, by example.** Too much, because it has made design decisions and written half
+a spec:
+
+> ASM, Manager or Admin can move a ticket to a different engineer. Extends the existing
+> `POST /:id/assign` endpoint rather than adding a parallel path.
+> **Done when:** ASM, Manager, or Admin can transfer an unassigned, assigned, or in-progress
+> ticket; the ticket resets to "assigned, pending acceptance"; the transfer is recorded in
+> the audit trail; the previous engineer loses access.
+
+Right, because it says what and stops:
+
+> A ticket can be handed to a different engineer at any point before it is resolved.
+> **Done when:** a supervisor can reassign an open ticket, and only the new engineer can act
+> on it.
+
+The endpoint, the exact states, the reset rule and the audit trail are all real questions.
+They are `/architect`'s questions.
 - **Tier tag**, only when it differs from the project default set in Step 7.
 - **Needs a decision?** Apply the invent test below.
 

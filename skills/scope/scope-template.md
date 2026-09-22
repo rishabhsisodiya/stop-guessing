@@ -5,6 +5,8 @@ The rules live in `SKILL.md`. This file is shapes only.
 
 - **Two parts**: a slim **At a glance** table for scanning, then feature sections grouped by phase.
   Build order is section order. There is no separate ordered list to keep in sync.
+- **What, never how.** Intent and `Done when:` describe what a user can do. No endpoints,
+  tables, fields or "extend X rather than Y": those are design, and design is `/architect`'s.
 - **Each fact appears once.** Intent, `Done when:`, and boxes live in the section.
   The table is only an index. Status appears in the table and beside the heading, nowhere else.
 - **Only what is set.** No `n/a`, no `inherit`, no empty fields. A pointer line appears only
