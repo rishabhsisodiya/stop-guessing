@@ -1,0 +1,8 @@
+# This repository is mostly Markdown: the skills themselves are Markdown, and the few .mjs
+# files are helper scripts. GitHub ignores Markdown when working out a repository's language,
+# so without this it is labelled JavaScript, which is misleading.
+*.md linguist-detectable=true
+*.md linguist-documentation=false
+
+# The helper scripts are real code, but they are not what this repository is.
+*.mjs linguist-detectable=true
