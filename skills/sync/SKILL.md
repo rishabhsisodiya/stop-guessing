@@ -1,6 +1,7 @@
 ---
 name: sync
 allowed-tools: Bash, Read, Grep, Glob, Edit, AskUserQuestion
+disable-model-invocation: true
 description: "Run /sync as the last step after a change is complete, around merge, to keep the durable files honest. Reconciles AGENTS.md, the scope and spec statuses against what the repo now actually shows. Surgical edits only: it adds lines and rewrites single lines it owns, never a section, never curated prose."
 ---
 

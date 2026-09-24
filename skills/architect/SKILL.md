@@ -1,7 +1,7 @@
 ---
 name: architect
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, Agent, AskUserQuestion
-description: "Run /architect when a load bearing decision is unmade: a data model, a provider or library, a page design, a cross cutting pattern, the stack, or when /develop says a decision is owed. Asks the questions that matter, recommends an answer, and writes it as a build spec. Owns every spec file. Never writes code."
+description: "Run /architect when a load bearing decision is unmade (data model, library, page design, cross cutting pattern, stack) or /develop says one is owed. Asks, recommends, writes a build spec. Never writes code."
 ---
 
 ## What this skill does

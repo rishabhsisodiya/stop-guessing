@@ -1,6 +1,7 @@
 ---
 name: audit
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
+disable-model-invocation: true
 description: "Run /audit to write the AGENTS.md context files every other skill reads: the real stack, the commands that actually work, the folder layout, the conventions the code actually follows. Run it first on an existing codebase, or after the stack is scaffolded on a new one. Records only what it can see evidence for, and never overwrites anything a human wrote."
 ---
 

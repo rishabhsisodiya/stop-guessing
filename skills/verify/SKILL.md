@@ -2,7 +2,7 @@
 name: verify
 allowed-tools: Bash, Read, Grep, Glob, Write, Agent, AskUserQuestion
 argument-hint: "[feature] | review [feature]"
-description: "Run /verify <feature> after building to prove it actually works: drives the real app against the spec's acceptance criteria, one by one. Run /verify review before a pull request for a senior code review on a fresh model that did not write the code. Reports findings and what it could not check. Never edits code."
+description: "Run /verify <feature> to prove a built feature meets its spec's acceptance criteria, or /verify review for a fresh-model code review before a PR. Never edits code."
 ---
 
 ## What this skill does

@@ -1,6 +1,7 @@
 ---
 name: scope
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
+disable-model-invocation: true
 description: "Run /scope to turn a product idea into an ordered, living plan saved where the project chooses (docs/ by default), or run it bare to reconcile what shipped and queue what is next. Decides WHAT to build and in what order, and flags which features need a decision before code. Never picks tools, never writes build tasks, specs, or code."
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: debug
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
-description: "Run /debug when something is failing, throwing, or behaving wrong: a failing test, a bug report, a /verify failure, behavior that does not match the spec. Reproduces it first, finds the cause by evidence rather than guesswork, makes the smallest fix at the cause, and leaves a regression test. No features, no refactors, no fixing more than the bug."
+description: "Run /debug when something fails or behaves wrong: a failing test, a bug report, a /verify failure. Reproduces first, fixes the cause minimally, leaves a regression test. No features, no refactors."
 ---
 
 ## What this skill does

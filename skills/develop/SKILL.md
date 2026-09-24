@@ -1,7 +1,7 @@
 ---
 name: develop
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
-description: "Run /develop to build a feature from its spec, backend or UI. If building would mean inventing a decision no spec records, it stops and routes you to /architect. Reads the spec, AGENTS.md and the project's stack defaults, builds only what the acceptance criteria ask for, self checks, and advances the scope. Never runs migrations, never invents a business rule."
+description: "Run /develop to build a feature from its spec. Stops and routes to /architect if building would mean inventing a decision no spec records. Never runs migrations, never invents a business rule."
 ---
 
 ## What this skill does

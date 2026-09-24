@@ -10,6 +10,15 @@ Versions follow semver as the project reads it:
 Update with `claude plugin marketplace update stop-guessing` then
 `claude plugin update stop-guessing@stop-guessing`, and start a new session.
 
+## 0.3.0
+
+**Less always-on context.** Every session used to carry about 920 tokens of skill
+descriptions, even when no skill ran. `guard`, `audit`, `scope` and `sync` now run only when
+you type them (`disable-model-invocation`), so they cost nothing until then; they are
+deliberate setup and bookkeeping steps, and Claude should never start them on its own.
+`architect`, `develop`, `verify` and `debug` keep automatic invocation with shorter
+descriptions. The cost is now about 250 tokens per session.
+
 ## 0.2.0
 
 **You choose where workflow files go, per kind.** The first time a skill writes a scope, a

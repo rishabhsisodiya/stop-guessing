@@ -1,6 +1,7 @@
 ---
 name: guard
 allowed-tools: Bash, Read, Write, Edit, AskUserQuestion
+disable-model-invocation: true
 description: "Run /guard to decide what this agent may run on its own: database writes, migrations, and destructive git. Runs twice in a project's life, once at the start for the rules every project needs, and again once the stack is known to cover that stack's migration tools. Writes the rules into .claude/settings.json so the harness enforces them."
 ---
 
